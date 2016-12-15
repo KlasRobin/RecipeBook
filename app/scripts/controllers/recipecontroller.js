@@ -17,7 +17,7 @@ angular.module('recipeBookApp')
     $scope.newRecipe = {};
     $scope.ingredients = [];
 
-    if($scope.user == undefined) {
+    if ($scope.user == undefined) {
       $location.path('/');
     }
 
@@ -25,30 +25,37 @@ angular.module('recipeBookApp')
       $scope.recipies = data;
     });
 
+
     RecipeService.getCategories().then(function(data) {
       $scope.categories = data;
     });
 
-    $scope.addIngredient = function(){
+    $scope.addIngredient = function() {
       $scope.ingredients.push("");
     }
 
-    $scope.removeIngredient = function(index){
+    $scope.removeIngredient = function(index) {
       $scope.ingredients.splice(index, 1);
     }
 
     $scope.postRecipe = function() {
       var temp = "";
       for (var i = $scope.ingredients.length - 1; i >= 0; i--) {
-       temp += $scope.ingredients[i];
-       if(i !== 0) {
+        temp += $scope.ingredients[i];
+        if (i !== 0) {
           temp += ',';
-       }
+        }
       }
       $scope.newRecipe.ingredients = temp;
       RecipeService.postRecipe($scope.newRecipe).then(function(data) {
-        console.log(data);
+        $scope.recipies = angular.copy(data);
+        $('#myModal').modal('hide');
       });
     };
 
+    $scope.removeRecipe = function(recipeId) {
+      RecipeService.deleteRecipe(recipeId).then(function(data) {
+        $scope.recipies = angular.copy(data);
+      });
+    };
   }]);

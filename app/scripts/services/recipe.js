@@ -61,6 +61,21 @@ angular.module('recipeBookApp')
           //TODO: Handle error
           return null;
         });
+      },
+      deleteRecipe: function(recipeId) {
+        return $http({
+          url: EndpointService.getURL('deleteRecipe', recipeId),
+          method: 'POST'
+        }).then(function successCallback(response) {
+          /*  */
+          if (!Object.keys(response.data).length > 0) {
+            response.data = null;
+          }
+          return response.data;
+        }, function errorCallback(response) {
+          //TODO: Handle error
+          return null;
+        });
       }
     };
   }]);
