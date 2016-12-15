@@ -14,9 +14,34 @@ body {
   padding: 10px;
 }
 
-.header{
-  button {
-    float: right;
+thead{
+  font-weight: bold;
+}
+
+tbody > tr {
+  &:hover{
+    background-color: grey;
+  }
+}
+
+.menu {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.card{
+  border: solid;
+  border-color: black;
+  border-radius: 2px;
+  border-width: 1px;
+  padding: 10px;
+}
+
+.ingredient {
+  span {
+    position: relative;
+    top: -25px;
+    left: 545px;
   }
 }
 
