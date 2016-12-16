@@ -23,7 +23,7 @@
       <h4 class="modal-title" id="newRecipeModalLabel">Redigera {{recipe.title}}</h4>
     </div>
     <div class="modal-body">
-     <form name="addRecipe">
+     <form name="editForm">
       <div class="form-group">
         <label for="title">Titel (*)</label>
         <input type="text" class="form-control" id="title" placeholder="Ange en titel" ng-model="tempRecipe.title" required>
@@ -50,7 +50,7 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeEdit()">Avbryt</button>
-    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="updateRecipe()" ng-disabled="addRecipe.$invalid">Spara</button>
+    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="updateRecipe()" ng-disabled="editForm.$invalid">Spara</button>
   </div>
 </div>
 </div>
