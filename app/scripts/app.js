@@ -19,14 +19,17 @@ angular
   ])
   .config(function($routeProvider) {
     $routeProvider
-      .when('/recipeBook', {
-        templateUrl: 'views/recipeBook.html',
-        controller: 'RecipeCtrl',
-        controllerAs: 'ctrl'
-      })
       .when('/', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
+        controllerAs: 'ctrl'
+      }).when('/recipeBook', {
+        templateUrl: 'views/recipeBook.html',
+        controller: 'RecipeCtrl',
+        controllerAs: 'ctrl'
+      }).when('/recipeBook/:id', {
+        templateUrl: 'views/singlerecipe.html',
+        controller: 'SinglerecipeCtrl',
         controllerAs: 'ctrl'
       })
       .otherwise({

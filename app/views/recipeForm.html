@@ -1,47 +1,4 @@
-<div>
-  <div class="header">
-    <div class="row">
-      <div class="col-md-6"><h1> Välkommen, {{user.name}}!</h1><h4>Här är dina recept</h4></div>
-      <div class="col-md-2 menu">
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newRecipeModal">
-          Nytt
-        </button>
-      </div>
-      <div class="col-md-2 menu">
-        <b>Söktext:</b>
-        <input type="text" class="form-control" ng-model="filterString.title">
-      </div>
-      <div class="col-md-2 menu">
-        <b>Kategori:</b>
-        <select class="form-control" ng-model="categoryFilter" ng-change="updateCategoryFilter(categoryFilter)">
-          <option value="all">Alla</option>
-          <option ng-repeat="category in categories">{{category.name}}</option>
-        </select><br>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-12">
-    <b ng-show="recipies.length < 1"></b>
-    <table class="table">
-      <thead>
-        <tr>
-          <td>Recept</td>
-          <td>Kategori</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="recipe in recipies | filter: filterString | filter: catFilter | orderBy: 'title' ">
-          <td ng-click="goToRecipe(recipe.recipeId)">{{recipe.title}}</td>
-          <td ng-click="goToRecipe(recipe.recipeId)">{{recipe.category.name}}</td>
-          <td class="delete"><span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="removeRecipe(recipe.recipeId)"></span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- New recipe Modal -->
-<div class="modal fade" id="newRecipeModal" tabindex="-1" role="dialog" aria-labelledby="newRecipeModalLabel" >
+<div class="modal fade" id="newRecipeModal" tabindex="-1" role="dialog" aria-labelledby="newRecipeModalLabel" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

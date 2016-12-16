@@ -20,11 +20,11 @@ angular.module('recipeBookApp')
     if ($scope.user == undefined) {
       $location.path('/');
     }
-
-    RecipeService.getRecipies().then(function(data) {
-      $scope.recipies = data;
-    });
-
+    if ($rootScope.loggedInUser) {
+      RecipeService.getRecipiesByAuthor($scope.user.id).then(function(data) {
+        $scope.recipies = data;
+      });
+    }
 
     RecipeService.getCategories().then(function(data) {
       $scope.categories = data;
@@ -48,7 +48,7 @@ angular.module('recipeBookApp')
       }
       $scope.newRecipe.ingredients = temp;
       RecipeService.postRecipe($scope.newRecipe).then(function(data) {
-        $scope.recipies = angular.copy(data);
+        updateList();
         $scope.clearForm();
         $('#newRecipeModal').modal('hide');
       });
@@ -56,13 +56,31 @@ angular.module('recipeBookApp')
 
     $scope.removeRecipe = function(recipeId) {
       RecipeService.deleteRecipe(recipeId).then(function(data) {
-        $scope.recipies = angular.copy(data);
+        updateList();
       });
     };
 
     $scope.clearForm = function() {
       $scope.newRecipe = {};
       $scope.ingredients = [];
+    };
+
+    $scope.goToRecipe = function(id) {
+      $location.path('/recipeBook/' + id);
+    };
+
+    $scope.updateCategoryFilter = function(filter) {
+      if (filter === 'all') {
+        $scope.catFilter = "";
+      } else {
+        $scope.catFilter = filter;
+      }
+    };
+
+    var updateList = function() {
+      RecipeService.getRecipiesByAuthor($scope.user.id).then(function(data) {
+        $scope.recipies = data;
+      });
     };
 
   }]);

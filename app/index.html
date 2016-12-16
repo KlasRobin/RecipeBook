@@ -12,6 +12,7 @@
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css">
   <!-- endbuild -->
 </head>
 <body ng-app="recipeBookApp">
@@ -33,12 +34,13 @@
    <!-- endbower -->
    <!-- endbuild -->
 
-   <!-- build:js({.tmp,app}) scripts/scripts.js -->
+   <!-- build:js({.tcmp,app}) scripts/scripts.js -->
    <script src="scripts/app.js"></script>
-   <script src="scripts/controllers/recipecontroller.js"></script>
    <script src="scripts/controllers/login.js"></script>
+   <script src="scripts/controllers/recipecontroller.js"></script>
    <script src="scripts/services/recipe.js"></script>
    <script src="scripts/services/endpoint.js"></script>
+   <script src="scripts/controllers/singlerecipe.js"></script>
    <!-- endbuild -->
  </body>
  </html>

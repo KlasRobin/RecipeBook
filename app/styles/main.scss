@@ -13,6 +13,19 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 body {
   padding: 10px;
 }
+.landingpage {
+  width: 100px;
+  height: 100px;
+  
+
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin: auto;
+}
 
 thead{
   font-weight: bold;
@@ -49,5 +62,13 @@ tbody > tr {
     top: -25px;
     left: 545px;
   }
+
+  .edit-btn {
+    height: 66px;
+    width: 66px;
+    font-size: 30px;
+  }
+
+
 }
 
