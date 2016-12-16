@@ -49,6 +49,7 @@ angular.module('recipeBookApp')
       $scope.newRecipe.ingredients = temp;
       RecipeService.postRecipe($scope.newRecipe).then(function(data) {
         $scope.recipies = angular.copy(data);
+        $scope.clearForm();
         $('#newRecipeModal').modal('hide');
       });
     };
@@ -59,14 +60,9 @@ angular.module('recipeBookApp')
       });
     };
 
-
-    $('#newRecipeModal').on('hidden.bs.modal', function () {
-      console.log("bajs");
-      $scope.newRecipe = {
-        title: '',
-        category: '',
-        description: ''
-      };
+    $scope.clearForm = function() {
+      $scope.newRecipe = {};
       $scope.ingredients = [];
-    })
+    };
+
   }]);
