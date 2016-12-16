@@ -20,7 +20,13 @@ thead{
 
 tbody > tr {
   &:hover{
-    background-color: grey;
+    background-color: #c6c6c6;
+  }
+}
+
+.delete {
+  &:hover {
+    background-color: red;
   }
 }
 

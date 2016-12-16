@@ -2,7 +2,7 @@
   <div class="header">
     <div class="row">
       <div class="col-md-6"><h1> Välkommen, {{user.name}}!</h1><h3>Här är dina recept</h3></div>
-      <div class="col-md-6 menu"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      <div class="col-md-6 menu"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newRecipeModal">
         Nytt
       </button></div>
     </div>
@@ -19,49 +19,50 @@
         <tr ng-repeat="recipie in recipies | orderBy: 'title'">
           <td>{{recipie.title}}</td>
           <td>{{recipie.category.name}}</td>
-          <td><span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="removeRecipe(recipie.recipeId)"></span></td>
+          <td class="delete"><span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="removeRecipe(recipie.recipeId)"></span></td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- New recipe Modal -->
+<div class="modal fade" id="newRecipeModal" tabindex="-1" role="dialog" aria-labelledby="newRecipeModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Lägg till nytt recept</h4>
+        <h4 class="modal-title" id="newRecipeModalLabel">Lägg till nytt recept</h4>
       </div>
       <div class="modal-body">
-       <form>
+       <form name="addRecipe">
         <div class="form-group">
-          <label for="title">Titel</label>
-          <input type="text" class="form-control" id="title" placeholder="Ange en titel" ng-model="newRecipe.title">
+          <label for="title">Titel (*)</label>
+          <input type="text" class="form-control" id="title" placeholder="Ange en titel" ng-model="newRecipe.title" required>
         </div>
         <div class="form-group">
-          <label for="category">Kategori</label>
-          <select class="form-control" id="category" ng-model="newRecipe.category" ng-options="x.name for x in categories">
+          <label for="category">Kategori (*)</label>
+          <select class="form-control" id="category" ng-model="newRecipe.category" ng-options="x.name for x in categories" required>
           </select>
         </div>
         <div class="form-group">
-        <label for="ingredient">Ingredienser</label>
+          <label for="ingredient">Ingredienser</label>
           <div ng-repeat="ingredient in ingredients track by $index" class="ingredient">
-              <input class="form-control" type="text" ng-model="ingredients[$index]">
-              <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="removeIngredient($index)"></span>
+            <input class="form-control" type="text" ng-model="ingredients[$index]">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="removeIngredient($index)"></span>
           </div>
           <button ng-click="addIngredient()">Lägg till ingrediens</button>
         </div>
         <div class="form-group">
-          <label for="description">Beskrivning</label>
-          <textarea class="form-control" id="description" rows="3" ng-model="newRecipe.description"></textarea>
+          <label for="description">Beskrivning (*)</label>
+          <textarea class="form-control" id="description" rows="3" ng-model="newRecipe.description" required></textarea>
         </div>
       </form>
+      <small>Fält markerade med (*) måste fyllas i!</small>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal">Avbryt</button>
-      <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="postRecipe()">Spara</button>
+      <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="postRecipe()" ng-disabled="addRecipe.$invalid">Spara</button>
     </div>
   </div>
 </div>
