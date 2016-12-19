@@ -25,6 +25,7 @@ angular.module('recipeBookApp')
 
     $scope.editRecipe = function() {
       $scope.tempRecipe = angular.copy($scope.recipe);
+      $scope.tempRecipe.category = null;
       $scope.tempIngredients = angular.copy($scope.recipe.ingredients);
       $scope.showEdit = !$scope.showEdit;
     };

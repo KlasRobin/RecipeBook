@@ -108,7 +108,7 @@ angular.module('recipeBookApp')
         });
       },
       updateRecipe: function(recipeId, recipe) {
-        var defer = $q.defer();
+        
         return $http({
           url: EndpointService.getURL('updateRecipe', recipeId),
           method: 'PUT',
