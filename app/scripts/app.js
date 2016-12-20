@@ -38,7 +38,7 @@ angular
       });
   }).run(['$rootScope', '$window',
   function($rootScope, $window) {
-
+    /* Initialize facebook SDK */
        window.fbAsyncInit = function() {
         FB.init({
           appId      : '229547214140365',
